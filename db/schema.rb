@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_27_143000) do
+ActiveRecord::Schema.define(version: 2024_12_27_175702) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "Email"
+    t.string "email"
     t.string "Password"
     t.boolean "is_active"
+    t.string "encrypted_password"
   end
 
   create_table "comments", force: :cascade do |t|

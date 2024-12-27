@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+ 
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
+  end
   devise_for :users
   get 'searchs/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -13,5 +21,6 @@ Rails.application.routes.draw do
   resources :comments
   resources :genres
   resources :searchs
-  resources :admins
+  get '/admin/sign_out', to: 'admin/sessions#destroy', as: :destroy_admin_session
+  delete '/admin/sign_out', to: 'admin/sessions#destroy', as: :new_destroy_admin_session
 end
